@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/hrafaelveloso/bets-divider/static/js/main.ef25c2a5.chunk.js",
-    "runtime-main.js": "/hrafaelveloso/bets-divider/static/js/runtime-main.3136c346.js",
-    "static/js/2.fb44d098.chunk.js": "/hrafaelveloso/bets-divider/static/js/2.fb44d098.chunk.js",
-    "index.html": "/hrafaelveloso/bets-divider/index.html",
-    "precache-manifest.a2fd76195440949b76e3d20b9cd2ba72.js": "/hrafaelveloso/bets-divider/precache-manifest.a2fd76195440949b76e3d20b9cd2ba72.js",
-    "service-worker.js": "/hrafaelveloso/bets-divider/service-worker.js"
+    "main.js": "/bets-divider/static/js/main.37b913b2.chunk.js",
+    "runtime-main.js": "/bets-divider/static/js/runtime-main.4181e9d8.js",
+    "static/js/2.5e7b5136.chunk.js": "/bets-divider/static/js/2.5e7b5136.chunk.js",
+    "index.html": "/bets-divider/index.html",
+    "precache-manifest.584e38c53c91130cb0dd5d8c5a9f8b2c.js": "/bets-divider/precache-manifest.584e38c53c91130cb0dd5d8c5a9f8b2c.js",
+    "service-worker.js": "/bets-divider/service-worker.js"
   }
 }
