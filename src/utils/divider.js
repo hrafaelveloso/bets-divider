@@ -1,22 +1,3 @@
-// const bets = [
-//   'Atletico TR2',
-//   'Real TR1',
-//   'Napoli TR1',
-//   'Paris Saint Germain TR1',
-//   'Gent TR2',
-//   'Club Brugge Handicap 2 -1.5',
-//   'Waregem TR1',
-//   'Royale Union St. Gilloise TR1',
-//   'Maribor TR1',
-//   'PSV TR1',
-//   'Ajax Handicap 1 -1.5',
-//   'Vozdovac TR2',
-//   'Javor Ivanjica TR2',
-//   'Basel TR1',
-//   'Hacken TR1',
-//   'AIC Estocolmo TR1',
-// ];
-
 const divider = (betsByEntry, bets) => {
   const numberOfBets = Math.floor(bets.length / betsByEntry);
   const availableIndexes = [...Array(bets.length).keys()];
@@ -52,6 +33,8 @@ const divider = (betsByEntry, bets) => {
       }
     }
   }
+
+  return betSlips;
 };
 
 export default divider;

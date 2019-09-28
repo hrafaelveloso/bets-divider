@@ -1,11 +1,13 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import overrides from './overrides';
 
 const theme = createMuiTheme({
   palette: {
     background: {
-      default: '#F8F8F8',
+      default: '#EDEDED',
     },
   },
+  overrides,
 });
 
 export default theme;
