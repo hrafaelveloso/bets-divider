@@ -5,6 +5,7 @@ import { CssBaseline, makeStyles } from '@material-ui/core';
 import Footer from './components/layout/Footer';
 import Content from './components/content/Content';
 import theme from './utils/theme';
+import ReactGA from 'react-ga';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -13,6 +14,9 @@ const useStyles = makeStyles(() => ({
     minHeight: '100vh',
   },
 }));
+
+const trackingId = 'UA-149127176-1';
+ReactGA.initialize(trackingId);
 
 const App = () => {
   const classes = useStyles();
