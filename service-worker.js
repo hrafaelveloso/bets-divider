@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/bets-divider/precache-manifest.584e38c53c91130cb0dd5d8c5a9f8b2c.js"
+  "/bets-divider/precache-manifest.851ababa5a7bb643073cac3b6c9c6ec9.js"
 );
 
 self.addEventListener('message', (event) => {
