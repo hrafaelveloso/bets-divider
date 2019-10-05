@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
 
 const trackingId = 'UA-149127176-1';
 ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const App = () => {
   const classes = useStyles();
