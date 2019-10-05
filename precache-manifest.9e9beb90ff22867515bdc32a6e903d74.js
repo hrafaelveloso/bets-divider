@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8e79a0018669524ffb059c6fb6bc4e42",
+    "revision": "64739ed24f1e04e488892d9b534a66c4",
     "url": "/bets-divider/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bets-divider/static/js/2.b576feac.chunk.js"
   },
   {
-    "revision": "51f032e1517ae715634b",
-    "url": "/bets-divider/static/js/main.6cb986d3.chunk.js"
+    "revision": "c5f3691d1ac04dcaa34b",
+    "url": "/bets-divider/static/js/main.189ed678.chunk.js"
   },
   {
     "revision": "ab16f293667c1e64eeeb",
