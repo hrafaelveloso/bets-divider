@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Betslip = ({ name, games, odd }) => {
+const Betslip = ({ name, games, odd, rightGames, menu }) => {
   const classes = useStyles();
 
   return (
@@ -25,7 +25,7 @@ const Betslip = ({ name, games, odd }) => {
         <Typography variant="h6">{name}</Typography>
         <Divider className={classes.divider} />
         {games.map((game, idxG) => (
-          <Game key={idxG} idx={idxG} game={game} />
+          <Game key={idxG} idx={idxG} rightGames={rightGames} menu={menu} game={game} />
         ))}
         <Divider className={classes.dividerBottom} />
         {odd > 1 && <Typography variant="subtitle2">Odd: {parseFloat(odd).toFixed(2)}</Typography>}

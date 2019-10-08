@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const BackOrRepeat = ({ setBetSlips, setBetsByEntry, divideBets }) => {
+const BackOrRepeat = ({ setBetSlips, setBetsByEntry, divideBets, menu }) => {
   const classes = useStyles();
 
   const freshStart = e => {
@@ -32,9 +32,9 @@ const BackOrRepeat = ({ setBetSlips, setBetsByEntry, divideBets }) => {
       >
         Voltar ao menu anterior
       </Button>
-      <Button variant="contained" color="primary" onClick={divideBets}>
+      {menu === 'divisor' && <Button variant="contained" color="primary" onClick={divideBets}>
         Repetir divisão
-      </Button>
+      </Button>}
     </Grid>
   );
 };
@@ -43,6 +43,7 @@ BackOrRepeat.propTypes = {
   setBetSlips: PropTypes.func.isRequired,
   setBetsByEntry: PropTypes.func.isRequired,
   divideBets: PropTypes.func.isRequired,
+  menu : PropTypes.string.isRequired,
 };
 
 export default React.memo(BackOrRepeat);

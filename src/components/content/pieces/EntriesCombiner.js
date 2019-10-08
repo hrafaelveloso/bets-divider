@@ -18,7 +18,28 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'center',
     },
   },
+  buttonSecondary: {
+    backgroundColor: '#169429',
+    '&:hover': {
+      backgroundColor: '#1a6125',
+    },
+  },
 }));
+
+const getBoletins = val => {
+  switch (val.toString()) {
+    case '1':
+      return 2;
+    case '2':
+      return 4;
+    case '3':
+      return 8;
+    case '4':
+      return 16;
+    default:
+      return 2;
+  }
+};
 
 const EntriesCombiner = ({ totalBets, combineBets, rightGames, onChangeRight }) => {
   const classes = useStyles();
@@ -37,9 +58,12 @@ const EntriesCombiner = ({ totalBets, combineBets, rightGames, onChangeRight }) 
       setHelperBets('');
     }
 
-    if (totalBets - parseInt(rightGames, 10) > 4) {
+    const diference = totalBets - parseInt(rightGames, 10);
+    if (diference > 4) {
       setHelperBets('O número de prognósticos a desdobrar não pode ser superior a 4.');
       setErrorBets(true);
+    } else if (parseInt(rightGames, 10) > 1 && parseInt(rightGames, 10) < totalBets) {
+      setHelperBets(`Serão gerados ${getBoletins(diference)} boletins ao desdobrar os últimos ${diference} prognósticos.`);
     }
   }, [rightGames, totalBets]);
 
@@ -53,6 +77,8 @@ const EntriesCombiner = ({ totalBets, combineBets, rightGames, onChangeRight }) 
             value={rightGames}
             onChange={onChangeRight}
             type="number"
+            step="1"
+            min="1"
             className={classes.numberBets}
             disabled={disabledNoBets}
             helperText={disabledNoBets ? (totalBets === 0 ? 'Nenhum prognóstico inserido' : 'Insira mais do que 1 prognóstico') : helperBets}
@@ -60,7 +86,7 @@ const EntriesCombiner = ({ totalBets, combineBets, rightGames, onChangeRight }) 
           />
         </Grid>
         <Grid item xs={12} sm={6} md="auto" className={classes.itemButton}>
-          <Button variant="contained" color="primary" disabled={buttonSubmitDisabled} onClick={combineBets}>
+          <Button variant="contained" color="primary" disabled={buttonSubmitDisabled} onClick={combineBets} className={classes.buttonSecondary}>
             Desdobrar prognósticos
           </Button>
         </Grid>

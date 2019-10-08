@@ -8,6 +8,7 @@ import BackOrRepeat from './pieces/BackOrRepeat';
 import { Close } from '@material-ui/icons';
 import EntriesCombiner from './pieces/EntriesCombiner';
 import clsx from 'clsx';
+import combiner from '../../utils/combiner';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -79,7 +80,9 @@ const Content = () => {
   const combineBets = e => {
     e.preventDefault();
 
-    console.log('OIOI');
+    const combining = combiner(totalBets, rightGames, bets.split(/\r*\n/).filter(x => x !== ''));
+
+    setBetSlips(combining);
   };
 
   const toggleModal = useCallback(() => {
@@ -89,6 +92,7 @@ const Content = () => {
   const changeMenu = useCallback(
     e => {
       e.preventDefault();
+      setBetSlips([])
 
       if (menu === 'divisor') {
         return setMenu('desdobrador');
@@ -133,9 +137,9 @@ const Content = () => {
           ) : (
             <>
               {betSlips.map(({ name, games, odd }, idx) => (
-                <Betslip key={idx} name={name} games={games} odd={odd} />
+                <Betslip key={idx} name={name} games={games} odd={odd} rightGames={rightGames} menu={menu} />
               ))}
-              <BackOrRepeat setBetSlips={setBetSlips} setBetsByEntry={setBetsByEntry} divideBets={divideBets} />
+              <BackOrRepeat setBetSlips={setBetSlips} setBetsByEntry={setBetsByEntry} divideBets={divideBets} menu={menu} />
             </>
           )}
         </Grid>

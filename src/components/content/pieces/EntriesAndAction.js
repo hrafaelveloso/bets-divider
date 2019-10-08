@@ -57,6 +57,9 @@ const EntriesAndAction = ({ betsByEntry, onChangeBets, totalBets, divideBets }) 
             value={betsByEntry}
             onChange={onChangeBets}
             type="number"
+            step="1"
+            min="1"
+            max={totalBets}
             className={classes.numberBets}
             disabled={disabledNoBets}
             helperText={disabledNoBets ? (totalBets === 0 ? 'Nenhum prognóstico inserido' : 'Insira mais do que 1 prognóstico') : helperBets}
