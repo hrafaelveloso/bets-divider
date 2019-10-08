@@ -20,42 +20,38 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const EntriesAndAction = ({ betsByEntry, onChangeBets, totalBets, divideBets }) => {
+const EntriesCombiner = ({ totalBets, combineBets, rightGames, onChangeRight }) => {
   const classes = useStyles();
   const disabledNoBets = useMemo(() => totalBets <= 1, [totalBets]);
   const [helperBets, setHelperBets] = useState('');
   const [errorBets, setErrorBets] = useState(false);
 
-  const buttonSubmitDisabled = disabledNoBets || errorBets || betsByEntry.length === 0;
+  const buttonSubmitDisabled = disabledNoBets || errorBets || rightGames.length === 0;
 
   useEffect(() => {
-    if (parseInt(betsByEntry, 10) >= totalBets) {
-      setHelperBets('O número de prognósticos por boletim não é inferior ao número total de prognósticos.');
+    if (parseInt(rightGames, 10) >= totalBets) {
+      setHelperBets("O número de prognósticos 'certos' não é inferior ao número total de prognósticos.");
       setErrorBets(true);
     } else {
       setErrorBets(false);
       setHelperBets('');
     }
 
-    if (parseInt(betsByEntry, 10) < totalBets && parseInt(betsByEntry, 10) > 1) {
-      const numberOfBets = Math.floor(totalBets / parseInt(betsByEntry, 10));
-      setHelperBets(`Serão gerados ${numberOfBets} boletins com ${parseInt(betsByEntry, 10)} prognósticos cada.`);
-      setErrorBets(false);
-    } else if (parseInt(betsByEntry, 10) === 1) {
-      setHelperBets('O número de prognósticos por boletim tem de ser superior a 1.');
+    if (totalBets - parseInt(rightGames, 10) > 4) {
+      setHelperBets('O número de prognósticos a desdobrar não pode ser superior a 4.');
       setErrorBets(true);
     }
-  }, [betsByEntry, totalBets]);
+  }, [rightGames, totalBets]);
 
   return (
     <Grid item xs={12} md={4}>
       <Grid container>
         <Grid item xs={12} sm={6} md={12}>
           <TextField
-            label="Prognósticos por boletim"
+            label="Número de prognósticos 'certos'"
             fullWidth
-            value={betsByEntry}
-            onChange={onChangeBets}
+            value={rightGames}
+            onChange={onChangeRight}
             type="number"
             className={classes.numberBets}
             disabled={disabledNoBets}
@@ -64,8 +60,8 @@ const EntriesAndAction = ({ betsByEntry, onChangeBets, totalBets, divideBets }) 
           />
         </Grid>
         <Grid item xs={12} sm={6} md="auto" className={classes.itemButton}>
-          <Button variant="contained" color="primary" disabled={buttonSubmitDisabled} onClick={divideBets}>
-            Dividir prognósticos
+          <Button variant="contained" color="primary" disabled={buttonSubmitDisabled} onClick={combineBets}>
+            Desdobrar prognósticos
           </Button>
         </Grid>
       </Grid>
@@ -73,4 +69,4 @@ const EntriesAndAction = ({ betsByEntry, onChangeBets, totalBets, divideBets }) 
   );
 };
 
-export default React.memo(EntriesAndAction);
+export default React.memo(EntriesCombiner);

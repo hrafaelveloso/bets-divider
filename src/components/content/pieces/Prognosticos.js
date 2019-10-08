@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Paper, TextField, makeStyles } from '@material-ui/core';
 import { Info } from '@material-ui/icons';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   iconInfo: {
@@ -14,9 +15,15 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.primary.dark,
     },
   },
+  buttonSecondary: {
+    color: '#169429',
+    '&:hover': {
+      color: '#1a6125',
+    },
+  },
 }));
 
-const Prognosticos = ({ value, totalBets, onChange, toggleModal }) => {
+const Prognosticos = ({ value, totalBets, onChange, toggleModal, menu }) => {
   const classes = useStyles();
 
   return (
@@ -34,12 +41,10 @@ const Prognosticos = ({ value, totalBets, onChange, toggleModal }) => {
           helperText={
             totalBets === 0
               ? 'Inserir 1 prognóstico por linha.'
-              : `${totalBets} prognóstico${totalBets > 1 ? 's' : ''} inserido${
-                  totalBets > 1 ? 's' : ''
-                }.`
+              : `${totalBets} prognóstico${totalBets > 1 ? 's' : ''} inserido${totalBets > 1 ? 's' : ''}.`
           }
         />
-        <Info color="primary" className={classes.iconInfo} onClick={toggleModal} />
+        <Info color="primary" className={clsx(classes.iconInfo, { [classes.buttonSecondary]: menu !== 'divisor' })} onClick={toggleModal} />
       </Paper>
     </Grid>
   );

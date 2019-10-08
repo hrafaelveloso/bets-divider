@@ -15,7 +15,7 @@ const divider = (betsByEntry, bets) => {
   const betSlips = [];
 
   for (let i = 0; i < numberOfBets; i++) {
-    const newBetslip = { name: `Aposta #${i + 1}`, games: [], odd: 1, order: [] };
+    const newBetslip = { name: `Boletim #${i + 1}`, games: [], odd: 1, order: [] };
     betSlips.push(newBetslip);
 
     // @ Percorre a betSlip e adiciona os jogos
