@@ -36,12 +36,15 @@ const Betslip = ({ name, games, odd, rightGames, menu }) => {
 
 Betslip.defaultProps = {
   odd: 1,
+  rightGames: 0,
 };
 
 Betslip.propTypes = {
   name: PropTypes.string.isRequired,
   games: PropTypes.array.isRequired,
+  menu: PropTypes.string.isRequired,
   odd: PropTypes.number,
+  rightGames: PropTypes.number,
 };
 
 export default React.memo(Betslip);

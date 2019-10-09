@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Grid, TextField, Button, makeStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   numberBets: {
@@ -60,10 +61,12 @@ const EntriesCombiner = ({ totalBets, combineBets, rightGames, onChangeRight }) 
 
     const diference = totalBets - parseInt(rightGames, 10);
     if (diference > 4) {
-      setHelperBets('O número de prognósticos a desdobrar não pode ser superior a 4.');
+      setHelperBets(
+        `O número de prognósticos a desdobrar não pode ser superior a 4. Prognósticos - ${totalBets}, Jogos 'certos' - ${rightGames}, Jogos a desdobrar - ${diference}.`
+      );
       setErrorBets(true);
     } else if (parseInt(rightGames, 10) > 1 && parseInt(rightGames, 10) < totalBets) {
-      setHelperBets(`Serão gerados ${getBoletins(diference)} boletins ao desdobrar os últimos ${diference} prognósticos.`);
+      setHelperBets(`Serão gerados ${getBoletins(diference)} boletins após desdobrar os últimos ${diference} prognósticos.`);
     }
   }, [rightGames, totalBets]);
 
@@ -93,6 +96,13 @@ const EntriesCombiner = ({ totalBets, combineBets, rightGames, onChangeRight }) 
       </Grid>
     </Grid>
   );
+};
+
+EntriesCombiner.propTypes = {
+  totalBets: PropTypes.string.isRequired,
+  combineBets: PropTypes.func.isRequired,
+  rightGames: PropTypes.number.isRequired,
+  onChangeRight: PropTypes.func.isRequired,
 };
 
 export default React.memo(EntriesCombiner);

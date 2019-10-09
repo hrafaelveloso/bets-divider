@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Grid, TextField, Button, makeStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   numberBets: {
@@ -74,6 +75,13 @@ const EntriesAndAction = ({ betsByEntry, onChangeBets, totalBets, divideBets }) 
       </Grid>
     </Grid>
   );
+};
+
+EntriesAndAction.propTypes = {
+  betsByEntry: PropTypes.string.isRequired,
+  onChangeBets: PropTypes.func.isRequired,
+  totalBets: PropTypes.number.isRequired,
+  divideBets: PropTypes.func.isRequired,
 };
 
 export default React.memo(EntriesAndAction);

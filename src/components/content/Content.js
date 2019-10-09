@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Grid, makeStyles, Typography, Dialog, DialogContent, DialogTitle, IconButton, Button, Box } from '@material-ui/core';
 import divider from '../../utils/divider';
 import Prognosticos from './pieces/Prognosticos';
@@ -9,6 +9,9 @@ import { Close } from '@material-ui/icons';
 import EntriesCombiner from './pieces/EntriesCombiner';
 import clsx from 'clsx';
 import combiner from '../../utils/combiner';
+import ContentDivisor from './pieces/ContentDivisor';
+import ContentCombiner from './pieces/ContentCombiner';
+import getMenuName from '../../utils/getMenuName';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -65,6 +68,7 @@ const Content = () => {
   const [betSlips, setBetSlips] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [menu, setMenu] = useState('divisor');
+  const menuName = useMemo(() => getMenuName(menu), [menu]);
 
   useEffect(() => {
     setTotalBets(bets.split(/\r*\n/).filter(x => x !== '').length);
@@ -92,7 +96,7 @@ const Content = () => {
   const changeMenu = useCallback(
     e => {
       e.preventDefault();
-      setBetSlips([])
+      setBetSlips([]);
 
       if (menu === 'divisor') {
         return setMenu('desdobrador');
@@ -107,11 +111,11 @@ const Content = () => {
     <Grid container justify="center" className={classes.minMargin}>
       <Grid item xs={11} md={10} lg={9}>
         <Typography variant="h5" align="center" className={classes.header}>
-          {menu === 'divisor' ? 'Divisor' : 'Desdobrador'} de prognósticos
+          {menuName} de prognósticos
         </Typography>
         <Box width="100%" display="flex" justifyContent="center" marginTop="10px">
           <Button variant="contained" color="primary" onClick={changeMenu} className={clsx({ [classes.buttonSecondary]: menu === 'divisor' })}>
-            Mudar para {menu === 'divisor' ? 'Desdobrador' : 'Divisor'}
+            Mudar para {menuName}
           </Button>
         </Box>
         <Grid container spacing={3} className={classes.marginContent}>
@@ -146,47 +150,12 @@ const Content = () => {
       </Grid>
       <Dialog open={openModal} fullWidth onClose={toggleModal}>
         <DialogTitle>
-          Informação sobre o {menu === 'divisor' ? 'Divisor' : 'Desdobrador'}
+          Informação sobre o {menuName}
           <IconButton aria-label="Close" className={classes.closeButton} onClick={toggleModal}>
             <Close />
           </IconButton>
         </DialogTitle>
-        <DialogContent>
-          {menu === 'divisor' ? (
-            <>
-              <Typography paragraph>
-                <b>1-</b> Insira um prognóstico por linha na caixa de texto.
-              </Typography>
-              <Typography paragraph>
-                <b>2-</b> Escolha quantos prognósticos quer por boletim gerado.
-              </Typography>
-              <Typography paragraph>
-                <b>3-</b> Após clique no botão 'Dividir prognósticos' são exibidos os boletins gerados.
-              </Typography>
-              <Typography>Para obter a odd correspondente do boletim final, insira o prognóstico com a odd do evento após um @.</Typography>
-              <Typography variant="subtitle2">Exemplo:</Typography>
-              <Typography>Portugal TR1 @1.75</Typography>
-            </>
-          ) : (
-            <>
-              <Typography paragraph>
-                <b>1-</b> Insira um prognóstico por linha na caixa de texto, com os prognósticos 'certos' ordenados.
-              </Typography>
-              <Typography paragraph>
-                <b>2-</b> Escolha quantos prognósticos são considerados 'certos'. Estes prognósticos mantêm-se iguais em todos os boletins
-                desdobrados.
-              </Typography>
-              <Typography paragraph>
-                <b>3-</b> Após clique no botão 'Desdobrar prognósticos' são exibidos os boletins geradas.
-              </Typography>
-              <Typography>Existe um limite de 4 prognósticos para serem desdobrados, uma vez que:</Typography>
-              <Typography>1 jogo a desdobrar -> 2 boletins</Typography>
-              <Typography>2 jogos a desdobrar -> 4 boletins</Typography>
-              <Typography>3 jogos a desdobrar -> 8 boletins</Typography>
-              <Typography>4 jogos a desdobrar -> 16 boletins</Typography>
-            </>
-          )}
-        </DialogContent>
+        <DialogContent>{menu === 'divisor' ? <ContentDivisor /> : <ContentCombiner />}</DialogContent>
       </Dialog>
     </Grid>
   );
