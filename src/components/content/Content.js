@@ -115,7 +115,7 @@ const Content = () => {
         </Typography>
         <Box width="100%" display="flex" justifyContent="center" marginTop="10px">
           <Button variant="contained" color="primary" onClick={changeMenu} className={clsx({ [classes.buttonSecondary]: menu === 'divisor' })}>
-            Mudar para {menuName}
+            Mudar para {menu === 'divisor' ? 'Desdobrador' : 'Divisor'}
           </Button>
         </Box>
         <Grid container spacing={3} className={classes.marginContent}>
