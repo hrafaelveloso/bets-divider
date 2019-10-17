@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/bets-divider/static/js/main.ea7a4337.chunk.js",
+    "main.js": "/bets-divider/static/js/main.f81f2092.chunk.js",
     "runtime-main.js": "/bets-divider/static/js/runtime-main.4181e9d8.js",
     "static/js/2.f982502a.chunk.js": "/bets-divider/static/js/2.f982502a.chunk.js",
     "index.html": "/bets-divider/index.html",
-    "precache-manifest.faff14d8ac71d927a9833e7bb6dddf13.js": "/bets-divider/precache-manifest.faff14d8ac71d927a9833e7bb6dddf13.js",
+    "precache-manifest.ae385a6eb78507d6485768d7b3cf81ae.js": "/bets-divider/precache-manifest.ae385a6eb78507d6485768d7b3cf81ae.js",
     "service-worker.js": "/bets-divider/service-worker.js"
   }
 }
