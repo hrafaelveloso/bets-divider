@@ -20,7 +20,7 @@ const Betslip = ({ name, games, odd, rightGames, menu }) => {
   const classes = useStyles();
 
   return (
-    <Grid item xs={12} md={3} lg={4}>
+    <Grid item xs={12} md={4}>
       <Paper elevation={3} className={classes.paper}>
         <Typography variant="h6">{name}</Typography>
         <Divider className={classes.divider} />
