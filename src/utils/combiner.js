@@ -2,7 +2,6 @@ const combiner = (total, right, bets) => {
   const remain = total - right;
   const combinationsBinary = '1'.repeat(remain);
   const combinations = parseInt(combinationsBinary, 2);
-  // const results = [];
   const betSlips = [];
 
   for (let i = 0; i <= combinations; i++) {
@@ -20,7 +19,6 @@ const combiner = (total, right, bets) => {
     }
 
     betSlips.push(newBetslip);
-    // results.push(i.toString(2).padStart(remain, '0'));
   }
 
   return betSlips;
